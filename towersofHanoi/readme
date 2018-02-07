@@ -1,1 +1,7 @@
 Towers of Hanoi using Recursion
+Steps.
+1. hanoi(n-1, start, spare, target)
+2. hanoi(1, start, target, spare)
+3. hanoi(n-1, spare, target, start)
+       
+        
