@@ -1,25 +1,29 @@
-class Graph:
-    def __init__(self, vertices):
-        # No. of vertices
-        self.V = vertices
+class Vertex:
+	def __init__(self,key):
+		self.id = key
+		self.connectedTo = {}
 
-        # default dictionary to store graph
-        self.graph = {}
+	def addNeighbor(self,nbr,weight = 0):
+		self.connectedTo[nbr] = weight
 
-        # To store transitive closure
-        self.tc = [[0 for j in range(self.V)] for i in range(self.V)]
+	def __str__(self):
+		return str(self.id) + 'connectedTo: ' + str([x.id for x in self.connected])
 
-    # function to add an edge to graph
-    def add_edge(self, u, v):
-        if u in self.graph:
-            self.graph[u].append(v)
-        else:
-            self.graph[u] = [v]
-            
-g = Graph(4)
-g.add_edge(0, 2)
-g.add_edge(0, 1)
-g.add_edge(1, 0)
-g.add_edge(2, 2)
-g.add_edge(2, 1)
-g.add_edge(3, 3)
+	def getConnections(self):
+		return self.connectedTo.keys()
+
+	def getId(self):
+		return self.id
+
+	def getWeight(self,nbr):
+		return self.connectedTo[nbr]
+		
+a = Vertex('V0')
+b = Vertex('V1')
+c = Vertex('V2')
+
+a.addNeighbor(b)
+a.addNeighbor(c)
+
+print(a)
+print([x.id for x in a.getConnections()])
